@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/JavaFX8-SceneNavigationTemplate.iml" filepath="$PROJECT_DIR$/.idea/modules/JavaFX8-SceneNavigationTemplate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/JavaFX8-SceneNavigationTemplate_main.iml" filepath="$PROJECT_DIR$/.idea/modules/JavaFX8-SceneNavigationTemplate_main.iml" group="JavaFX8-SceneNavigationTemplate" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/JavaFX8-SceneNavigationTemplate_test.iml" filepath="$PROJECT_DIR$/.idea/modules/JavaFX8-SceneNavigationTemplate_test.iml" group="JavaFX8-SceneNavigationTemplate" />
+    </modules>
+  </component>
+</project>
