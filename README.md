@@ -52,6 +52,25 @@ public class FirstController implements Updatable, Initializable {
 }
 
 ```
+
+##### Step 4: Set the first scene to load when the app starts up
+
+In the Main app class pass in the `SceneName` to the MainPane constructor in order to load it when the app
+starts up. For example, if you wanted `SceneName.FIRST` to be the first scene to load on startup, then you would modify
+the Main class as follows:
+```
+public class Main extends Application {
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        primaryStage.setScene(new Scene(new MainPane(SceneName.FIRST)));
+        primaryStage.show();
+    }
+}
+```
  
 ## How to use 
 

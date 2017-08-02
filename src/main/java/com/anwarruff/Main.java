@@ -1,5 +1,6 @@
 package com.anwarruff;
 
+import com.anwarruff.scene.SceneName;
 import com.anwarruff.ui.MainPane;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -12,7 +13,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setScene(new Scene(new MainPane()));
+        primaryStage.setScene(new Scene(new MainPane(SceneName.FIRST)));
         primaryStage.show();
     }
 }

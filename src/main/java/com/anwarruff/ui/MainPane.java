@@ -7,8 +7,8 @@ import javafx.scene.layout.StackPane;
 
 public class MainPane extends StackPane {
 
-    public MainPane() {
-        SceneNavigator.initialize(this, SceneName.FIRST);
+    public MainPane(SceneName firstScene) {
+        SceneNavigator.initialize(this, firstScene);
     }
 
     /**
