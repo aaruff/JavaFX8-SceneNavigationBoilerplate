@@ -46,7 +46,10 @@ public class SceneNavigator {
     private static void loadScene(SceneName sceneName, String fxmlResource) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource(fxmlResource));
-            panes.put(sceneName, loader.load());
+            Pane pane = loader.load();
+            pane.prefHeightProperty().bind(mainPane.heightProperty());
+            pane.prefWidthProperty().bind(mainPane.widthProperty());
+            panes.put(sceneName, pane);
             updatableControllers.put(sceneName, loader.getController());
         } catch (IOException e) {
             e.printStackTrace();
