@@ -1,25 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="173.0" prefWidth="467.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.anwarruff.controller.FirstController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="385.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.anwarruff.controller.FirstController">
    <children>
-      <Button fx:id="nextButton" layoutX="177.0" layoutY="114.0" mnemonicParsing="false" onAction="#nextButtonClicked" prefHeight="45.0" prefWidth="114.0" text="Next">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
-      <Label layoutX="11.0" layoutY="10.0" prefHeight="48.0" prefWidth="450.0" text="Screen: First">
-         <font>
-            <Font size="29.0" />
-         </font>
-      </Label>
-      <Label fx:id="notifyLabel" contentDisplay="CENTER" layoutX="11.0" layoutY="62.0" prefHeight="35.0" prefWidth="447.0">
-         <font>
-            <Font size="29.0" />
-         </font></Label>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <center>
+            <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="48.0" prefWidth="450.0" text="Screen: First">
+                     <font>
+                        <Font size="29.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="notifyLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="447.0">
+                     <font>
+                        <Font size="29.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+         </center>
+         <bottom>
+            <Button fx:id="nextButton" mnemonicParsing="false" onAction="#nextButtonClicked" prefHeight="45.0" prefWidth="114.0" text="Next" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" />
+               </BorderPane.margin>
+            </Button>
+         </bottom>
+      </BorderPane>
    </children>
-</AnchorPane>
+</StackPane>

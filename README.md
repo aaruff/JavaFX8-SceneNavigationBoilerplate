@@ -72,8 +72,27 @@ public class Main extends Application {
 }
 ```
  
-## How to use 
+##### Step 5: Adding panes (fxml)
+All panes must have `StackPane` declared as the root node. To add any panel of you choosing simply declare it as a 
+child node of the StackPane root node. For example, if you wanted to use a BorderPane,
+you would declare it as a child element of a stacked pane as follows:
+```
+<StackPane>
+  <BorderPane>
+     <center>
+      <Label text="Screen: First">
+     </center>
+     <bottom>
+        <Button text="Next" />
+     </bottom>
+  </BorderPane>
+</StackPane>
 
+```
+
+### How to use 
+
+##### Switching scenes 
 To switch from one scene to another simply call the `SceneNavigator.setScene(SceneName.Name)` function. For example, 
 to switch to scene `SceneName.Last` when a button click event is handled by `nextButtonClicked()`, put the `setScene`
 function call in the handler as follows: 
