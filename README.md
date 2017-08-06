@@ -131,14 +131,17 @@ Use the following command to run the demo
 ```
 gradlew run
 ```
-On startup you will see the first scene (SceneName.FIRST): 
+On startup you will see the first scene (SceneName.FIRST). 
+
 ![Image of first screen](http://anwarruff.com/wp-content/uploads/2017/08/first-1-e1502024078532.png)
 
 When the next button is selected the last scene (SceneName.LAST) will be displayed. 
+
 ![Image of last screen](http://anwarruff.com/wp-content/uploads/2017/08/second_1.png)
 
 Both scenes display the name of the previous screen displayed before it. If the previous button is selected
 you will return to the first scene, but an additional message will be displayed naming the previous stage (Last).
+
 ![Image of first screen](http://anwarruff.com/wp-content/uploads/2017/08/first_2.png)
 
 ## License
