@@ -1,56 +1,54 @@
 package com.anwarruff.scene;
 
 import com.anwarruff.controller.Updatable;
-import com.anwarruff.ui.MainPane;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 public class SceneNavigator {
-    private static final HashMap<SceneName, Updatable> updatableControllers = new HashMap<>();
-    private static final HashMap<SceneName, Pane> panes = new HashMap<>();
+    private static final HashMap<SceneName, Updatable> controllers = new HashMap<>();
+    private static final HashMap<SceneName, Scene> scenes = new HashMap<>();
 
     private static SceneName currentSceneName;
-    private static MainPane mainPane;
+    private static Stage primaryStage;
 
     private static boolean scenesLoaded = false;
 
     /**
      * Lazy loads all scenes, and sets the current scene to firstSceneName.
-     * @param mainPane The main stacked pane use as a stage for all scenes
-     * @param firstSceneName The first scene to be displayed
+     * @param primaryStage The primary stage
      */
-    public static void initialize(MainPane mainPane, SceneName firstSceneName) {
+    public static void initialize(Stage primaryStage, Map<SceneName, String> scenes) {
         if (scenesLoaded) {
             return;
         }
-        SceneNavigator.mainPane = mainPane;
-        currentSceneName = firstSceneName;
-
-        loadAllScenes();
+        SceneNavigator.primaryStage = primaryStage;
+        loadAllScenes(scenes);
         scenesLoaded = true; // Can't use set setScene() until scene loaded flag is set to true
-
-        setScene(firstSceneName);
     }
 
     /**
-     * Load all scenes used in this application.
+     * Loads all scenes used by this application.
+     * @param scenes Scenes used by this application
      */
-    private static void loadAllScenes() {
-        loadScene(SceneName.FIRST, "/firstPane.fxml");
-        loadScene(SceneName.LAST, "/lastPane.fxml");
+    private static void loadAllScenes(Map<SceneName, String> scenes) {
+        for (Map.Entry<SceneName, String> set : scenes.entrySet()) {
+            loadScene(set.getKey(), set.getValue());
+        }
     }
 
     private static void loadScene(SceneName sceneName, String fxmlResource) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource(fxmlResource));
             Pane pane = loader.load();
-            pane.prefHeightProperty().bind(mainPane.heightProperty());
-            pane.prefWidthProperty().bind(mainPane.widthProperty());
-            panes.put(sceneName, pane);
-            updatableControllers.put(sceneName, loader.getController());
+            Scene scene = new Scene(pane);
+            scenes.put(sceneName, scene);
+            controllers.put(sceneName, loader.getController());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -64,15 +62,21 @@ public class SceneNavigator {
         if (!scenesLoaded) {
             return;
         }
-        Pane currentPane = panes.get(currentSceneName);
-        mainPane.getChildren().remove(currentPane);
 
-        Pane nextPane = panes.get(nextSceneName);
-        mainPane.getChildren().add(nextPane);
+        primaryStage.setScene(scenes.get(nextSceneName));
 
-        Updatable nextController = updatableControllers.get(nextSceneName);
-        nextController.onNavigateUpdate(currentSceneName);
+        Updatable nextController = controllers.get(nextSceneName);
+        nextController.onNavigateUpdate((currentSceneName == null) ? nextSceneName : currentSceneName);
 
         currentSceneName = nextSceneName;
+    }
+
+    /**
+     * Shows the current scene
+     */
+    public static void show() {
+        if (scenesLoaded && currentSceneName != null) {
+           primaryStage.show();
+        }
     }
 }
