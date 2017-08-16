@@ -1,6 +1,6 @@
 package com.anwarruff.scene;
 
-import com.anwarruff.controller.Updatable;
+import com.anwarruff.controller.Swappable;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SceneNavigator {
-    private static final HashMap<SceneName, Updatable> controllers = new HashMap<>();
+    private static final HashMap<SceneName, Swappable> controllers = new HashMap<>();
     private static final HashMap<SceneName, Scene> scenes = new HashMap<>();
 
     private static SceneName currentSceneName;
@@ -65,8 +65,8 @@ public class SceneNavigator {
 
         primaryStage.setScene(scenes.get(nextSceneName));
 
-        Updatable nextController = controllers.get(nextSceneName);
-        nextController.onNavigateUpdate((currentSceneName == null) ? nextSceneName : currentSceneName);
+        Swappable nextController = controllers.get(nextSceneName);
+        nextController.onLoad((currentSceneName == null) ? nextSceneName : currentSceneName);
 
         currentSceneName = nextSceneName;
     }
