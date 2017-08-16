@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LastController implements Initializable, Updatable {
+public class LastController implements Initializable, Swappable {
     @FXML
     Button nextButton;
 
@@ -18,8 +18,13 @@ public class LastController implements Initializable, Updatable {
     Label notifyLabel;
 
     @Override
-    public void onNavigateUpdate(SceneName previousSceneName) {
+    public void onLoad(SceneName previousSceneName) {
         notifyLabel.setText("Previous: " + previousSceneName.toString());
+    }
+
+    @Override
+    public void onUnload() {
+
     }
 
     @Override
