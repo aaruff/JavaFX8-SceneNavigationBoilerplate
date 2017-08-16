@@ -63,16 +63,24 @@ public class Main extends Application {
 
 ##### Step 4: Controller Setup 
 
-To use a controller with the SceneNavigator it must implement the `Updateable` interface, which is used to provide 
-controllers with a `onNavigateUpdate(SceneName previousSceneName)` method. When navigating to a new scene, the 
-`onNavigateUpdate` function is called with the previous scene name. This would allow a controller to determine the 
-source from which the user has navigated from. Below is an example of an JavaFX Controller implementing `Updateable`, 
-and updating a `Label` with the previous screen name:
+To use a controller with the SceneNavigator it must implement the `Swappable` interface, which has two abstract
+methods: 
+
+ * `onLoad(SceneName previousSceneName)` - which is used perform any preparation required when navigating to a 
+ scene controller. 
+ * `onUnload()` - which is used to perform any cleanup required when navigating from a controller.
+
+Below is an example of an JavaFX Controller implementing `Swappable`, and updating a `Label` with the previous 
+screen name, and clearing it when leaving the scene:
 ```
-public class FirstController implements Updatable, Initializable {
+public class FirstController implements Swappable, Initializable {
     @Override
-    public void onNavigateUpdate(SceneName previousSceneName) {
+    public void onLoad(SceneName previousSceneName) {
         notifyLabel.setText("Previous: " + previousSceneName.toString());
+    }
+    
+    public void onUnload() {
+        notifyLabel.setText("");
     }
     
     ...
@@ -109,7 +117,7 @@ To switch from one scene to another simply call the `SceneNavigator.setScene(Sce
 to switch to scene `SceneName.Last` when a button click event is handled by `nextButtonClicked()`, put the `setScene`
 function call in the handler as follows: 
 ```
-public class FirstController implements Updatable, Initializable {
+public class FirstController implements Swappable, Initializable {
     @FXML
     private void nextButtonClicked() {
         SceneNavigator.setScene(SceneName.LAST);
